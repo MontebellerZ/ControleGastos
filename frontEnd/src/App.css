@@ -1,0 +1,15 @@
+html, body, #root, .App{
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.hidden{
+  display: none;
+}
+
+button, input[type="button"], input[type="submit"]{
+  cursor: pointer;
+}
