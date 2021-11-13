@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Switch, BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { Switch, BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import TelaNotFound from './telas/TelaNotFound/TelaNotFound';
 import TelaLogin from './telas/TelaLogin/TelaLogin';
@@ -19,14 +19,11 @@ function App() {
           <Route path="/login">
             <TelaLogin/>
           </Route>
-          <Route path="/app">
-            <CmpGeral/>
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/app"/>
+          <Route path="/notFound">
+            <TelaNotFound/>
           </Route>
           <Route path="/">
-            <TelaNotFound/>
+            <CmpGeral/>
           </Route>
         </Switch>
       </div>
