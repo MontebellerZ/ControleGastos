@@ -2,22 +2,13 @@ import "./CmpMenu.css";
 import ImgBackgruond from "../../imgs/repeatedDoge.png";
 
 import CmpLogo from "../../imgs/logo192.png";
+import { NavLink } from "react-router-dom";
 
-function CmpMenu(props) {
+function CmpMenu() {
 	let usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
-	let telaAtiva = props.telaAtiva;
-
-	function click(pos, link) {
-		let baseClasses = new Array(4).fill("CmpMenuBtn");
-		baseClasses[pos] = "CmpMenuBtnAtivo";
-
-		props.setTelaAtiva(baseClasses);
-		document.getElementById(link).click();
-	}
-
 	return (
-		<section id="CmpMenu">			
+		<section id="CmpMenu">
 			<div id="CmpMenuCabecalho">
 				<div
 					id="CmpMenuBackground"
@@ -28,37 +19,49 @@ function CmpMenu(props) {
 
 			<div id="CmpMenuCorpo">
 				<div id="CmpMenuFirst">
-					<button
-						className={telaAtiva[0]}
-						type="button"
-						onClick={() => click(0, "linkTelaInicial")}
+					<NavLink
+						to="/inicial"
+						className={(ativo) =>
+							ativo ? "CmpMenuBtnAtivo" : "CmpMenuBtn"
+						}
+						// className="CmpMenuBtn"
+						// activeClassName="CmpMenuBtnAtivo"
 					>
 						Início
-					</button>
-					<button
-						className={telaAtiva[1]}
-						type="button"
-						onClick={() => click(1, "linkTelaDetalhado")}
+					</NavLink>
+					<NavLink
+						to="/detalhes"
+						className={(ativo) =>
+							ativo ? "CmpMenuBtnAtivo" : "CmpMenuBtn"
+						}
+						// className="CmpMenuBtn"
+						// activeClassName="CmpMenuBtnAtivo"
 					>
 						Detalhes
-					</button>
-					<button
-						className={telaAtiva[2]}
-						type="button"
-						onClick={() => click(2, "linkTelaInserir")}
+					</NavLink>
+					<NavLink
+						to="/inserir"
+						className={(ativo) =>
+							ativo ? "CmpMenuBtnAtivo" : "CmpMenuBtn"
+						}
+						// className="CmpMenuBtn"
+						// activeClassName="CmpMenuBtnAtivo"
 					>
 						Inserir
-					</button>
+					</NavLink>
 				</div>
 
 				<div id="CmpMenuLast">
-					<button
-						className={telaAtiva[3]}
-						type="button"
-						onClick={() => click(3, "linkTelaConta")}
+					<NavLink
+						to="/conta"
+						className={(ativo) =>
+							ativo ? "CmpMenuBtnAtivo" : "CmpMenuBtn"
+						}
+						// className="CmpMenuBtn"
+						// activeClassName="CmpMenuBtnAtivo"
 					>
 						{usuario.nome}
-					</button>
+					</NavLink>
 				</div>
 			</div>
 		</section>

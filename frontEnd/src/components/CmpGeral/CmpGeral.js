@@ -9,17 +9,9 @@ import TelaConta from "../../telas/TelaConta/TelaConta";
 import TelaEditarConta from "../../telas/TelaEditarConta/TelaEditarConta";
 
 import CmpMenu from "../CmpMenu/CmpMenu";
-import { useState } from "react";
 
-function CmpGeral(props) {
+function CmpGeral() {
 	let usuario = sessionStorage.getItem("usuario");
-
-	const [telaAtiva, setTelaAtiva] = useState([
-		"CmpMenuBtnAtivo",
-		"CmpMenuBtn",
-		"CmpMenuBtn",
-		"CmpMenuBtn",
-	]);
 
 	if (!usuario) {
 		return <Redirect to="/login" />;
@@ -32,10 +24,10 @@ function CmpGeral(props) {
 					<Link id="linkTelaDetalhado" to="/detalhes"></Link>
 					<Link id="linkTelaInserir" to="/inserir"></Link>
 					<Link id="linkTelaConta" to="/conta"></Link>
-					<Link id="linkTelaEditarConta" to="/editarconta"></Link>
+					<Link id="linkTelaEditarConta" to="/conta/editar"></Link>
 				</div>
 
-				<CmpMenu telaAtiva={telaAtiva} setTelaAtiva={setTelaAtiva} />
+				<CmpMenu />
 
 				<section id="CmpGeralConteudo">
 					<Switch>
@@ -48,11 +40,11 @@ function CmpGeral(props) {
 						<Route path="/inserir">
 							<TelaInserir />
 						</Route>
+						<Route path="/conta/editar">
+							<TelaEditarConta />
+						</Route>
 						<Route path="/conta">
 							<TelaConta />
-						</Route>
-						<Route path="/editarconta">
-							<TelaEditarConta />
 						</Route>
 						<Route exact path="/">
 							<Redirect to="/inicial" />

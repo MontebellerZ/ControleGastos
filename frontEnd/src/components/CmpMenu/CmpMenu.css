@@ -36,17 +36,17 @@
 }
 
 .CmpMenuBtn, .CmpMenuBtnAtivo{
+    width: 100%;
+    box-sizing: border-box;
     transition: 0.05s;
-    outline: 0px;
-    border: 0px;
     font-size: 20px;
     font-weight: bold;
-    background-color: transparent;
     text-align: left;
-    width: 100%;
     margin: 0px;
     padding: 5px 0px 5px 16px;
     min-width: 180px;
+    text-decoration: none;
+    color: black;
 }
 
 .CmpMenuBtnAtivo{
@@ -63,6 +63,9 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: left;
-    align-items: center;
+}
+
+#CmpMenuLast{
+    display: flex;
+    flex-direction: column;
 }
