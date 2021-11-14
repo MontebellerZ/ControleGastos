@@ -2,34 +2,22 @@ import "./CmpMenu.css";
 import ImgBackgruond from "../../imgs/repeatedDoge.png";
 
 import CmpLogo from "../../imgs/logo192.png";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
 function CmpMenu(props) {
-	const [telaAtiva, setTelaAtiva] = useState([
-		"CmpMenuBtnAtivo",
-		"CmpMenuBtn",
-		"CmpMenuBtn",
-		"CmpMenuBtn",
-	]);
+	let usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+	let telaAtiva = props.telaAtiva;
 
 	function click(pos, link) {
 		let baseClasses = new Array(4).fill("CmpMenuBtn");
 		baseClasses[pos] = "CmpMenuBtnAtivo";
 
-		setTelaAtiva(baseClasses);
+		props.setTelaAtiva(baseClasses);
 		document.getElementById(link).click();
 	}
 
 	return (
-		<section id="CmpMenu">
-			<div className="hidden">
-				<Link id="linkTelaInicial" to="/inicial"></Link>
-				<Link id="linkTelaDetalhado" to="/detalhado"></Link>
-				<Link id="linkTelaInserir" to="/inserir"></Link>
-				<Link id="linkTelaConta" to="/conta"></Link>
-			</div>
-			
+		<section id="CmpMenu">			
 			<div id="CmpMenuCabecalho">
 				<div
 					id="CmpMenuBackground"
@@ -59,7 +47,7 @@ function CmpMenu(props) {
 						type="button"
 						onClick={() => click(2, "linkTelaInserir")}
 					>
-						Registrar
+						Inserir
 					</button>
 				</div>
 
@@ -69,7 +57,7 @@ function CmpMenu(props) {
 						type="button"
 						onClick={() => click(3, "linkTelaConta")}
 					>
-						Filipe
+						{usuario.nome}
 					</button>
 				</div>
 			</div>
