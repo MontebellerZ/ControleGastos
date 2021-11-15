@@ -16,10 +16,7 @@ function TelaEditarConta() {
 			email: emailInput,
 			senha: senhaInput,
 			nome: nomeInput,
-			sobrenome: sobrenomeInput,
-			balanco: usuario.balanco,
-			entrada: usuario.entrada,
-			saida: usuario.saida,
+			sobrenome: sobrenomeInput
 		};
 
 		Axios.put(
@@ -28,6 +25,7 @@ function TelaEditarConta() {
 		)
 			.then(() => {
 				sessionStorage.setItem("usuario", JSON.stringify(novoUsuario));
+				window.location.reload();
 			})
 			.catch(() => {
 				alert("pelo menos deu erro");
@@ -39,12 +37,12 @@ function TelaEditarConta() {
 	}
 
 	function atualizarUsuario(event) {
-		event.preventDefault();
 		tryUpdate();
+		event.preventDefault();
 	}
 
 	return (
-		<section id="Editar">
+		<section id="TelaEditarConta">
 			<form onSubmit={atualizarUsuario}>
 				<label htmlFor="EditarNome">
 					Digite o novo Nome:

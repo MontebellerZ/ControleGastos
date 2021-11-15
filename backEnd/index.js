@@ -71,32 +71,31 @@ app.delete("/usuario/delete", (req, res) => {
 });
 
 app.put("/usuario/update/:id", (req, res) => {
-    const params = [
-        req.body.email,
+	const params = [
+		req.body.email,
 		req.body.senha,
 		req.body.nome,
 		req.body.sobrenome,
-		req.body.balanco,
-		req.body.entrada,
-		req.body.saida,
 		req.params.id,
 	];
-    
-	const sqlUpdate = "UPDATE Usuarios SET email=?, senha=?, nome=?, sobrenome=?, balanco=?, entrada=?, saida=? WHERE (id=?);";
-    
+
+	const sqlUpdate =
+		"UPDATE Usuarios SET email=?, senha=?, nome=?, sobrenome=? WHERE (id=?);";
+
 	db.query(sqlUpdate, params, (err, result) => {
-        if (!err) {
-            res.send(result);
+		if (!err) {
+			res.send(result);
+		} 
+		else {
+			res.send(err);
+			console.log(err);
 		}
-        else{
-            res.send(err);
-        }
 	});
 });
 
 app.post("/gasto/insert", (req, res) => {
 	const params = [
-		req.body.conta,
+		req.body.usuario,
 		req.body.dia,
 		req.body.tipo,
 		req.body.objeto,
@@ -105,11 +104,13 @@ app.post("/gasto/insert", (req, res) => {
 	];
 
 	const sqlInsert =
-		"INSERT INTO Usuarios (conta_id, dia, tipo, objeto, acao, valor) VALUES (?,?,?,?,?,?);";
+		"INSERT INTO Gastos (usuario_id, dia, tipo, objeto, acao, valor) VALUES (?,?,?,?,?,?);";
 	db.query(sqlInsert, params, (err, result) => {
 		if (!err) {
-			adoido;
 			res.send(result);
+		}
+		else{
+			console.log(err);
 		}
 	});
 });

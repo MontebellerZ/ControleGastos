@@ -7,10 +7,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     email VARCHAR(80) UNIQUE,
     senha VARCHAR(20) NOT NULL,
     nome VARCHAR(40) NOT NULL,
-    sobrenome VARCHAR(40) NOT NULL,
-    balanco DECIMAL(12,2),
-    entrada DECIMAL(12,2),
-    saida DECIMAL(12,2)
+    sobrenome VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Gastos (
@@ -26,8 +23,10 @@ CREATE TABLE IF NOT EXISTS Gastos (
 
 /* 
 SELECT * FROM Usuarios;
-SELECT * FROM Contas;
 SELECT * FROM Gastos;
+
+DELETE FROM Usuarios WHERE id>0;
+DELETE FROM Gastos WHERE id>0;
 */
 
 

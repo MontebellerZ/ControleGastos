@@ -6,14 +6,16 @@ function TelaInserir() {
 	let usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
 	const [tipoInput, setTipoInput] = useState("");
-	const [diaInput, setDiaInput] = useState("");
+	const [diaInput, setDiaInput] = useState(
+		new Date().toISOString().slice(0, 10)
+	);
 	const [objetoInput, setObjetoInput] = useState("");
 	const [acaoInput, setAcaoInput] = useState("");
 	const [valorInput, setValorInput] = useState("");
 
-	function limparCampos(){
+	function limparCampos() {
 		setTipoInput("");
-		setDiaInput("");
+		setDiaInput(new Date().toISOString().slice(0, 10));
 		setObjetoInput("");
 		setAcaoInput("");
 		setValorInput("");
@@ -21,15 +23,19 @@ function TelaInserir() {
 
 	function tryRegister() {
 		Axios.post("http://localhost:3001/gasto/insert", {
-			conta: usuario.id,
+			usuario: usuario.id,
 			dia: diaInput,
 			tipo: tipoInput,
 			objeto: objetoInput,
 			acao: acaoInput,
 			valor: valorInput,
-		}).catch((err) => {
-			alert("pelo menos deu erro");
-		});
+		})
+			.then(() => {
+				limparCampos();
+			})
+			.catch((err) => {
+				alert("pelo menos deu erro");
+			});
 	}
 
 	function inserirTransacao(event) {
@@ -40,31 +46,34 @@ function TelaInserir() {
 	return (
 		<section id="TelaInserir">
 			<form onSubmit={inserirTransacao}>
-				<label htmlFor="TelaTipo">
-					Tipo da transação:
+				<label htmlFor="TelaInserirMotivoInput">
+					Motivo da transação:
 					<select
-						name="select"
+						id="TelaInserirMotivoInput"
+						required
 						value={tipoInput}
 						onChange={(event) => {
 							setTipoInput(event.target.value);
 						}}
 					>
-						<option value="Salário">Salário</option>
-						<option value="Lazer">Lazer</option>
-						<option value="Ganho">Ganho</option>
-						<option value="Comida">Comida</option>
-						<option value="Necessidade">Necessidade</option>
-						<option value="Doação">Doação</option>
-						<option value="Outros">Outros</option>
+						<option hidden value="" label="Motivo" />
+						<option value="Salário" label="Salário" />
+						<option value="Lazer" label="Lazer" />
+						<option value="Ganho" label="Ganho" />
+						<option value="Comida" label="Comida" />
+						<option value="Necessidade" label="Necessidade" />
+						<option value="Doação" label="Doação" />
+						<option value="Outros" label="Outros" />
 					</select>
 				</label>
 
-				<label htmlFor="TelaInserirOque">
-					O dinheiro foi gasto com:
+				<label htmlFor="TelaInserirObjetivoInput">
+					Objetivo da transação
 					<input
-						id="TelaInserirOque"
-						type="string"
-						placeholder="Digite o que comprou"
+						id="TelaInserirObjetivoInput"
+						type="text"
+						placeholder="Objetivo"
+						required
 						value={objetoInput}
 						onChange={(event) => {
 							setObjetoInput(event.target.value);
@@ -72,29 +81,31 @@ function TelaInserir() {
 					/>
 				</label>
 
-				<label htmlFor="TelaAcao">
-					Ação:
+				<label htmlFor="TelaInserirTipoInput">
+					Tipo da transação:
 					<select
-						name="select"
+						id="TelaInserirTipoInput"
+						required
 						value={acaoInput}
 						onChange={(event) => {
 							setAcaoInput(event.target.value);
 						}}
 					>
-						<option value="Et">Et</option>
-						<option value="Db">Db</option>
-						<option value="Cr">Cr</option>
-						<option value="Tr">Tr</option>
-						<option value="Dp">Dp</option>
+						<option hidden value="" label="Tipo" />
+						<option value="Et" label="Entrada" />
+						<option value="Db" label="Débito" />
+						<option value="Cr" label="Crédito" />
+						<option value="Tr" label="Transferência" />
 					</select>
 				</label>
 
-				<label htmlFor="TelaInserirValor">
+				<label htmlFor="TelaInserirValorInput">
 					Valor da transação:
 					<input
-						id="TelaInserirValor"
+						id="TelaInserirValorInput"
 						type="number"
 						placeholder="Valor"
+						required
 						value={valorInput}
 						onChange={(event) => {
 							setValorInput(event.target.value);
@@ -102,11 +113,12 @@ function TelaInserir() {
 					/>
 				</label>
 
-				<label htmlFor="TelaData">
+				<label htmlFor="TelaInserirDiaInput">
 					Data da transação:
 					<input
-						id="TelaData"
+						id="TelaInserirDiaInput"
 						type="date"
+						required
 						value={diaInput}
 						onChange={(event) => {
 							setDiaInput(event.target.value);
@@ -114,8 +126,10 @@ function TelaInserir() {
 					/>
 				</label>
 
-				<input type="reset" value="Limpar Campos" onClick={limparCampos} />
-				<input type="submit" value="Registrar Transação" />
+				<div id="TelaInserirControlBtns">
+					<input type="reset" value="Limpar" onClick={limparCampos} />
+					<input type="submit" value="Registrar" />
+				</div>
 			</form>
 		</section>
 	);

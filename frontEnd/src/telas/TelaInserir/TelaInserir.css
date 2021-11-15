@@ -1,0 +1,66 @@
+#TelaInserir{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#TelaInserir form{
+    display: flex;
+    flex-direction: column;
+}
+
+#TelaInserir form label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+
+#TelaInserir form label input, #TelaInserir form label select{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 6px;
+    font-size: 16px;
+}
+
+#TelaInserir form label select option{
+    background-color: rgb(255, 235, 123);
+}
+
+#TelaInserirControlBtns{
+    margin: 10px 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+#TelaInserirControlBtns input{
+    transition: 0.2s;
+    cursor: pointer;
+    box-sizing: border-box;
+    flex: 1;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    outline: 0px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+#TelaInserirControlBtns input:hover{
+    transform: scale(1.05);
+}
+
+#TelaInserirControlBtns input[type=submit]{
+    background-color: rgb(183, 255, 180);
+}
+
+#TelaInserirControlBtns input[type=reset]{
+    background-color: rgb(255, 180, 180);
+}

@@ -13,7 +13,7 @@ function TelaConta() {
 	}
 
 	return (
-		<section id="TelaInserir">
+		<section id="TelaConta">
 			<p>Nome: {usuario.nome}</p>
 			<p>Sobrenome: {usuario.sobrenome}</p>
 			<p>Email: {usuario.email}</p>
