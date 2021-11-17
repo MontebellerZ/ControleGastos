@@ -1,0 +1,45 @@
+#TelaInicial{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 40px;
+}
+
+#TelaInicialTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#TelaInicialTitle h1{
+    padding: 0px 10px;
+    border-bottom: 2px solid rgb(184, 9, 184);
+}
+
+#TelaInicialInfo{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#TelaInicialInfo .TelaInicialInfoQuadrado{
+    border: 2px solid rgb(184, 9, 184);
+    background-color: rgba(184, 9, 184, 0.1);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+}
+
+#TelaInicialInfo .TelaInicialInfoQuadrado:nth-child(even){
+    border: 2px solid rgb(211, 179, 1);
+    background-color: rgba(211, 179, 1, 0.1);
+}
+
+#TelaInicialMes{
+    color: rgb(160, 1, 160);
+}

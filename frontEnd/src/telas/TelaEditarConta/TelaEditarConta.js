@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./TelaEditarConta.css";
 import Axios from "axios";
 
-function TelaEditarConta() {    
+function TelaEditarConta() {
 	let usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
 	const [nomeInput, setNomeInput] = useState(usuario.nome);
@@ -16,7 +16,7 @@ function TelaEditarConta() {
 			email: emailInput,
 			senha: senhaInput,
 			nome: nomeInput,
-			sobrenome: sobrenomeInput
+			sobrenome: sobrenomeInput,
 		};
 
 		Axios.put(
@@ -43,12 +43,13 @@ function TelaEditarConta() {
 
 	return (
 		<section id="TelaEditarConta">
+			<h1>Edite as informações da sua conta.</h1>
 			<form onSubmit={atualizarUsuario}>
-				<label htmlFor="EditarNome">
+				<label htmlFor="TelaEditarContaNome">
 					Digite o novo Nome:
 					<input
 						placeholder="Nome"
-						id="EditarNome"
+						id="TelaEditarContaNome"
 						type="text"
 						value={nomeInput}
 						onChange={(event) => {
@@ -56,11 +57,11 @@ function TelaEditarConta() {
 						}}
 					/>
 				</label>
-				<label htmlFor="EditarSobrenome">
+				<label htmlFor="TelaEditarContaSobrenome">
 					Digite o novo Sobrenome:
 					<input
 						placeholder="Sobrenome"
-						id="EditarSobrenome"
+						id="TelaEditarContaSobrenome"
 						type="text"
 						value={sobrenomeInput}
 						onChange={(event) => {
@@ -68,11 +69,11 @@ function TelaEditarConta() {
 						}}
 					/>
 				</label>
-				<label htmlFor="EditarEmail">
+				<label htmlFor="TelaEditarContaEmail">
 					Digite o novo Email:
 					<input
 						placeholder="Email"
-						id="EditarEmail"
+						id="TelaEditarContaEmail"
 						type="email"
 						value={emailInput}
 						onChange={(event) => {
@@ -80,11 +81,11 @@ function TelaEditarConta() {
 						}}
 					/>
 				</label>
-				<label htmlFor="EditarSenha">
+				<label htmlFor="TelaEditarContaSenha">
 					Digite a nova Senha:
 					<input
 						placeholder="Senha"
-						id="EditarSenha"
+						id="TelaEditarContaSenha"
 						type="password"
 						value={senhaInput}
 						onChange={(event) => {
@@ -93,12 +94,14 @@ function TelaEditarConta() {
 					/>
 				</label>
 
-				<input
-					type="button"
-					value="Voltar para Minha Conta"
-					onClick={voltar}
-				/>
-				<input type="submit" value="Salvar Alterações" />
+				<div id="TelaEditarContaControl">
+					<input
+						type="button"
+						value="Voltar para Minha Conta"
+						onClick={voltar}
+					/>
+					<input type="submit" value="Salvar Alterações" />
+				</div>
 			</form>
 		</section>
 	);

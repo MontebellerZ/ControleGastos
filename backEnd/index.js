@@ -26,6 +26,7 @@ app.get("/usuario/get", (req, res) => {
 	});
 });
 
+//ok
 app.get("/usuario/login/:email/:senha", (req, res) => {
 	const params = [req.params.email, req.params.senha];
 	const sqlSelect = "SELECT * FROM Usuarios WHERE (email=? AND senha=?);";
@@ -39,6 +40,7 @@ app.get("/usuario/login/:email/:senha", (req, res) => {
 	});
 });
 
+//ok
 app.post("/usuario/insert", (req, res) => {
 	const params = [
 		req.body.email,
@@ -70,6 +72,7 @@ app.delete("/usuario/delete", (req, res) => {
 	});
 });
 
+//ok
 app.put("/usuario/update/:id", (req, res) => {
 	const params = [
 		req.body.email,
@@ -93,24 +96,54 @@ app.put("/usuario/update/:id", (req, res) => {
 	});
 });
 
-app.post("/gasto/insert", (req, res) => {
+//ok
+app.get("/transacao/get/:usuario", (req, res) => {
+	const sqlSelect = "SELECT * FROM Transacoes WHERE usuario_id=? ORDER BY dia;";
+
+	db.query(sqlSelect, req.params.usuario, (err, result) => {
+		if (!err) {
+			res.send(result);
+		} else {
+			res.send(err);
+			console.log(err);
+		}
+	});
+});
+
+//ok
+app.post("/transacao/insert", (req, res) => {
 	const params = [
 		req.body.usuario,
 		req.body.dia,
+		req.body.motivo,
+		req.body.objetivo,
 		req.body.tipo,
-		req.body.objeto,
-		req.body.acao,
 		req.body.valor,
 	];
 
 	const sqlInsert =
-		"INSERT INTO Gastos (usuario_id, dia, tipo, objeto, acao, valor) VALUES (?,?,?,?,?,?);";
+		"INSERT INTO Transacoes (usuario_id, dia, motivo, objetivo, tipo, valor) VALUES (?,?,?,?,?,?);";
 	db.query(sqlInsert, params, (err, result) => {
 		if (!err) {
 			res.send(result);
 		}
 		else{
 			console.log(err);
+			res.send(err);
+		}
+	});
+});
+
+//ok
+app.delete("/transacao/delete/:id", (req, res) => {
+	const sqlDelete = "DELETE FROM Transacoes WHERE (id=?)";
+
+	db.query(sqlDelete, req.params.id, (err, result) => {
+		if (err) {
+			res.send(err);
+		}
+		else{
+			res.send(result);
 		}
 	});
 });
