@@ -54,11 +54,11 @@ function TelaInserir() {
 
 				let vCabeca = [
 					"Dia",
+					"Categoria",
 					"Motivo",
-					"Objetivo",
 					"Tipo",
 					"Valor",
-					"Apagar",
+					"Controles",
 				];
 				setCabecaTabela(vCabeca);
 
@@ -70,13 +70,24 @@ function TelaInserir() {
 						dados[i].objetivo,
 						dados[i].tipo,
 						dados[i].valor,
-						<button
-							onClick={() => {
-								tryDeleteTransacao(dados[i], i);
-							}}
-						>
-							<FontAwesomeIcon icon={faTrashAlt} />
-						</button>,
+						<div className="TelaInserirTransacaoCtrl">
+							<button
+								title="Apagar essa transação"
+								onClick={() => {
+									tryDeleteTransacao(dados[i], i);
+								}}
+							>
+								<FontAwesomeIcon icon={faTrashAlt} />
+							</button>
+							<button
+								title="Apagar essa transação"
+								onClick={() => {
+									tryDeleteTransacao(dados[i], i);
+								}}
+							>
+								<FontAwesomeIcon icon={faTrashAlt} />
+							</button>
+						</div>,
 					];
 					vCorpo.push(linha);
 				}
@@ -135,7 +146,7 @@ function TelaInserir() {
 				</label>
 
 				<label htmlFor="TelaInserirMotivoInput">
-					Motivo da transação:
+					Categoria da transação:
 					<select
 						id="TelaInserirMotivoInput"
 						required
@@ -156,11 +167,11 @@ function TelaInserir() {
 				</label>
 
 				<label htmlFor="TelaInserirObjetivoInput">
-					Objetivo da transação
+					Motivo da transação
 					<input
 						id="TelaInserirObjetivoInput"
 						type="text"
-						placeholder="Objetivo"
+						placeholder="Motivo"
 						required
 						value={objetivoInput}
 						onChange={(event) => {

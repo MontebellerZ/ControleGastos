@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.CmpMesesControl button{
+.CmpMesesControlMove{
     outline: 0px;
     border: 1px solid black;
     border-radius: 4px;
@@ -13,7 +13,33 @@
     font-size: 16px;
 }
 
+.CmpMesesControlMonthInput{
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+    outline: 0px;
+    border-bottom: 2px solid rgb(184, 9, 184);
+    padding: 0px 10px;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: bold;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: sans-serif;
+}
+
 .CmpMesesControl b{
     margin: 0px 20px;
     font-size: 18px;
+}
+
+#CmpMeses table{
+    margin-top: 20px;
+    width: 100%;
+    border-spacing: 0;
+}
+
+#CmpMeses table td, #CmpMeses table th{
+    border: 1px solid black;
+    padding: 5px;
 }

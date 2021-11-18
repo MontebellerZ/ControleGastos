@@ -100,7 +100,11 @@ function CmpRegistrar() {
 				click("linkLogin");
 			})
 			.catch((err) => {
-				alert("pelo menos deu erro");
+				if (err.status === 599) {
+					alert(
+						`Não foi possível criar a conta pois o email "${emailInput}" já está cadastrado por outro usuário.`
+					);
+				}
 			});
 	}
 

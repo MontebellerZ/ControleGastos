@@ -10,31 +10,69 @@ function CmpMeses(props) {
 
 	function menosMes() {
 		let m = mes;
-        let novaData = new Date(m.setMonth(m.getMonth() - 1))
+		let novaData = new Date(m.setMonth(m.getMonth() - 1));
 		setMes(novaData);
 	}
 	function maisMes(lado) {
 		let m = mes;
-        let novaData = new Date(m.setMonth(m.getMonth() + 1))
+		let novaData = new Date(m.setMonth(m.getMonth() + 1));
 		setMes(novaData);
 
-        // if()
+		// if()
+	}
+	function changeInputMonth(valor) {
+		// let correctFormat = `${valor}-01 00:00:00`;
+		setMes(new Date(`${valor}-01 00:00:00`));
+	}
+
+	let cabeca = ["Dia", "Motivo", "Objetivo", "Tipo", "Valor"];
+	let corpo = [];
+
+	let sentinela = false;
+	for (let i = 0; i < props.meses.length; i++) {
+		if (
+			mes.toISOString().slice(0, 7).replace("/", "-") ===
+			props.meses[i][0]
+		) {
+			for (let j = 0; j < props.meses[i][1].length; j++) {
+				let vetorMes = props.meses[i][1][j];
+
+				corpo.push([
+					vetorMes.dia.slice(8, 10),
+					vetorMes.motivo,
+					vetorMes.objetivo,
+					vetorMes.tipo,
+					vetorMes.valor,
+				]);
+			}
+		}
 	}
 
 	return (
-		<div>
+		<div id="CmpMeses">
 			<div className="CmpMesesControl">
-				<button onClick={menosMes}>esquerda</button>
-				<b>
-					{mes.toLocaleString("default", {
-						month: "long",
-						year: "numeric",
-					})}
-				</b>
-				<button onClick={maisMes}>direita</button>
+				<button className="CmpMesesControlMove" onClick={menosMes}>
+					Anterior
+				</button>
+				<input
+					id={`CmpMesesControlMonth${props.tipo}`}
+					type="month"
+					className="CmpMesesControlMonthInput"
+					value={mes.toISOString().slice(0, 7).replace("/", "-")}
+					onChange={(e) => {
+						changeInputMonth(e.target.value);
+					}}
+				/>
+				<button className="CmpMesesControlMove" onClick={maisMes}>
+					Próximo
+				</button>
 			</div>
 
-            {/* <CmpTabela cabeca={} corpo={}/> */}
+			{corpo.length > 0 ? (
+				<CmpTabela cabeca={cabeca} corpo={corpo} />
+			) : (
+				<h1>Não existem transações referentes à esse mês</h1>
+			)}
 		</div>
 	);
 }

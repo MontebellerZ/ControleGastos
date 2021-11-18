@@ -56,6 +56,7 @@ app.post("/usuario/insert", (req, res) => {
 			res.send(result);
 		} else {
 			console.log(err);
+			res.status(599).send(err);
 		}
 	});
 });

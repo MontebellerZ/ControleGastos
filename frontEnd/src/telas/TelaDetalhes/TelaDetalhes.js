@@ -74,16 +74,12 @@ function TelaDetalhes() {
 			<div id="TelaDetalhesBoxes">
 				<div id="TelaDetalhesGastos" className="TelaDetalhesDiv">
 					<h1>Gastos</h1>
-					<CmpMeses meses={mesesTransacaoGastos} />
+					<CmpMeses meses={mesesTransacaoGastos} tipo="Saida" />
 				</div>
 				<div id="TelaDetalhesRecebimentos" className="TelaDetalhesDiv">
 					<h1>Recebimentos</h1>
-					<CmpMeses meses={mesesTransacaoRecebimentos} />
+					<CmpMeses meses={mesesTransacaoRecebimentos} tipo="Entrada" />
 				</div>
-				<div
-					id="TelaDetalhesOverview"
-					className="TelaDetalhesDiv"
-				></div>
 			</div>
 		</section>
 	);

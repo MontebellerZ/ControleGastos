@@ -29,7 +29,7 @@ function CmpMenu() {
 					>
 						Início
 					</NavLink>
-					{/* <NavLink
+					<NavLink
 						to="/detalhes"
 						className={(ativo) =>
 							ativo ? "CmpMenuBtnAtivo" : "CmpMenuBtn"
@@ -38,7 +38,7 @@ function CmpMenu() {
 						// activeClassName="CmpMenuBtnAtivo"
 					>
 						Detalhes
-					</NavLink> */}
+					</NavLink>
 					<NavLink
 						to="/inserir"
 						className={(ativo) =>
