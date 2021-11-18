@@ -7,7 +7,7 @@ function TelaInicial() {
 	let usuario = JSON.parse(sessionStorage.getItem("usuario"));
 	let dia = new Date().getHours();
 
-	const [hora, setHora] = useState();
+	const [hora, setHora] = useState(new Date().toLocaleTimeString());
 	const [gastos, setGastos] = useState(0);
 	const [recebimentos, setRecebimentos] = useState(0);
 	const [saldo, setSaldo] = useState(0);
@@ -71,13 +71,13 @@ function TelaInicial() {
 			<h1 id="TelaInicialMes">{mes[0].toUpperCase() + mes.slice(1)}</h1>
 			<div id="TelaInicialInfo">
 				<div className="TelaInicialInfoQuadrado">
-					Seus recebimentos esse mês: R${recebimentos}
+					Seus recebimentos esse mês: R${recebimentos.toLocaleString(undefined, {minimumFractionDigits: 2})}
 				</div>
 				<div className="TelaInicialInfoQuadrado">
-					Seus gastos esse mês: R${gastos}
+					Seus gastos esse mês: R${gastos.toLocaleString(undefined, {minimumFractionDigits: 2})}
 				</div>
 				<div className="TelaInicialInfoQuadrado">
-					Saldo do mês: R${saldo}
+					Saldo do mês: R${saldo.toLocaleString(undefined, {minimumFractionDigits: 2})}
 				</div>
 			</div>
 		</section>

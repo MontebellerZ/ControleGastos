@@ -116,14 +116,14 @@ app.post("/transacao/insert", (req, res) => {
 	const params = [
 		req.body.usuario,
 		req.body.dia,
+		req.body.categoria,
 		req.body.motivo,
-		req.body.objetivo,
 		req.body.tipo,
 		req.body.valor,
 	];
 
 	const sqlInsert =
-		"INSERT INTO Transacoes (usuario_id, dia, motivo, objetivo, tipo, valor) VALUES (?,?,?,?,?,?);";
+		"INSERT INTO Transacoes (usuario_id, dia, categoria, motivo, tipo, valor) VALUES (?,?,?,?,?,?);";
 	db.query(sqlInsert, params, (err, result) => {
 		if (!err) {
 			res.send(result);

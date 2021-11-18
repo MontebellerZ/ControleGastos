@@ -9,22 +9,10 @@ function TelaDetalhes() {
 	const [mesesTransacaoGastos, setMesesTransacaoGastos] = useState(0);
 	const [mesesTransacaoRecebimentos, setMesesTransacaoRecebimentos] =
 		useState(0);
-	const [transacao, setTransacao] = useState(0);
-	const [gastos, setGastos] = useState(0);
-	const [recebimentos, setRecebimentos] = useState(0);
-	const [saldo, setSaldo] = useState(0);
-
-	const [vGastosCabeca, setVGastosCabeca] = useState([]);
-	const [vGastosCorpo, setVGastosCorpo] = useState([]);
-	const [vRecebimentosCabeca, setVRecebimentosCabeca] = useState([]);
-	const [vRecebimentosCorpo, setVRecebimentosCorpo] = useState([]);
-	const [vSaldoCabeca, setVSaldoCabeca] = useState([]);
-	const [vSaldoCorpo, setVSaldoCorpo] = useState([]);
 
 	function tryGetTransacoesUsuario() {
 		Axios.get(`http://localhost:3001/transacao/get/${usuario.id}`)
 			.then((result) => {
-				setTransacao(result.data);
 				setMeses(result.data);
 			})
 			.catch(() => {
@@ -78,7 +66,10 @@ function TelaDetalhes() {
 				</div>
 				<div id="TelaDetalhesRecebimentos" className="TelaDetalhesDiv">
 					<h1>Recebimentos</h1>
-					<CmpMeses meses={mesesTransacaoRecebimentos} tipo="Entrada" />
+					<CmpMeses
+						meses={mesesTransacaoRecebimentos}
+						tipo="Entrada"
+					/>
 				</div>
 			</div>
 		</section>

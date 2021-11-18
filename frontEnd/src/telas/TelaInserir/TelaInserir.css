@@ -23,11 +23,18 @@
 	text-align: center;
 }
 
+#TelaInserir form label .TelaInserirDivEdit{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 #TelaInserir form label input, #TelaInserir form label select {
 	box-sizing: border-box;
 	margin: 0px;
 	padding: 6px;
 	font-size: 16px;
+	flex: 1;
 }
 
 #TelaInserir form label select option {
@@ -147,16 +154,6 @@
 
 #TelaInserirDados tr td:last-child {
 	border-right: 2px solid black;
-}
-
-#TelaInserirDados .TelaInserirTransacaoCtrl button {
-	background-color: rgb(255, 122, 122);
-	border: 1px solid black;
-	border-radius: 5px;
-	outline: 0px;
-	box-sizing: border-box;
-	padding: 8px;
-	font-size: 20px;
 }
 
 #TelaInserirDados .TelaInserirTransacaoCtrl button {

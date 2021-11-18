@@ -25,10 +25,9 @@ function CmpMeses(props) {
 		setMes(new Date(`${valor}-01 00:00:00`));
 	}
 
-	let cabeca = ["Dia", "Motivo", "Objetivo", "Tipo", "Valor"];
+	let cabeca = ["Dia", "Categoria", "Motivo", "Tipo", "Valor"];
 	let corpo = [];
 
-	let sentinela = false;
 	for (let i = 0; i < props.meses.length; i++) {
 		if (
 			mes.toISOString().slice(0, 7).replace("/", "-") ===
@@ -39,10 +38,10 @@ function CmpMeses(props) {
 
 				corpo.push([
 					vetorMes.dia.slice(8, 10),
+					vetorMes.categoria,
 					vetorMes.motivo,
-					vetorMes.objetivo,
 					vetorMes.tipo,
-					vetorMes.valor,
+					vetorMes.valor.toLocaleString(undefined, {minimumFractionDigits: 2}),
 				]);
 			}
 		}
