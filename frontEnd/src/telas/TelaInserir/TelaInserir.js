@@ -20,8 +20,8 @@ function TelaInserir() {
 	const [corpoTabela, setCorpoTabela] = useState([[]]);
 
 	function limparCampos() {
+		// setDiaInput(new Date().toISOString().slice(0, 10));
 		setCategoriaInput("");
-		setDiaInput(new Date().toISOString().slice(0, 10));
 		setMotivoInput("");
 		setTipoInput("");
 		setValorInput("");
@@ -57,7 +57,7 @@ function TelaInserir() {
 					"Categoria",
 					"Motivo",
 					"Tipo",
-					"Valor",
+					"Valor (R$)",
 					"Controles",
 				];
 				setCabecaTabela(vCabeca);
@@ -66,10 +66,12 @@ function TelaInserir() {
 				for (let i = 0; i < dados.length; i++) {
 					let linha = [
 						dados[i].dia.slice(0, 10),
-						dados[i].motivo,
 						dados[i].categoria,
+						dados[i].motivo,
 						dados[i].tipo,
-						dados[i].valor,
+						dados[i].valor.toLocaleString(undefined, {
+							minimumFractionDigits: 2,
+						}),
 						<div className="TelaInserirTransacaoCtrl">
 							<button
 								title="Apagar essa transação"
@@ -138,6 +140,7 @@ function TelaInserir() {
 						id="TelaInserirDiaInput"
 						type="date"
 						required
+						max={new Date().toISOString().slice(0, 10).replace(/\/g/, "-")}
 						value={diaInput}
 						onChange={(event) => {
 							setDiaInput(event.target.value);
@@ -239,7 +242,7 @@ function TelaInserir() {
 
 			<div id="TelaInserirDados">
 				{corpoTabela.length > 0 ? (
-					<CmpTabela cabeca={cabecaTabela} corpo={corpoTabela} />
+					<CmpTabela cabeca={cabecaTabela} corpo={corpoTabela} tableId="TelaInserirTabela"/>
 				) : (
 					<h1>Nenhuma transação registrada para seu usuário!</h1>
 				)}

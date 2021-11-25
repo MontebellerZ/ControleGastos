@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CmpTabela from "../CmpTabela/CmpTabela";
 import "./CmpMeses.css";
 
@@ -27,6 +27,7 @@ function CmpMeses(props) {
 
 	let cabeca = ["Dia", "Categoria", "Motivo", "Tipo", "Valor"];
 	let corpo = [];
+	let total = 0;
 
 	for (let i = 0; i < props.meses.length; i++) {
 		if (
@@ -41,14 +42,24 @@ function CmpMeses(props) {
 					vetorMes.categoria,
 					vetorMes.motivo,
 					vetorMes.tipo,
-					vetorMes.valor.toLocaleString(undefined, {minimumFractionDigits: 2}),
+					vetorMes.valor.toLocaleString(undefined, {
+						minimumFractionDigits: 2,
+					}),
 				]);
+				total += vetorMes.valor;
 			}
+			break;
 		}
 	}
 
+	useEffect(()=>{
+		let inputElement = document.getElementById(`CmpMesesControlMonth${props.tipo}`);
+		let inputWidth = inputElement.offsetWidth + 4;
+		inputElement.style.width = `${inputWidth}px`;
+	}, []);
+
 	return (
-		<div id="CmpMeses">
+		<div className="CmpMeses">
 			<div className="CmpMesesControl">
 				<button className="CmpMesesControlMove" onClick={menosMes}>
 					Anterior
@@ -58,17 +69,35 @@ function CmpMeses(props) {
 					type="month"
 					className="CmpMesesControlMonthInput"
 					value={mes.toISOString().slice(0, 7).replace("/", "-")}
+					max={new Date().toISOString().slice(0, 7).replace("/", "-")}
 					onChange={(e) => {
 						changeInputMonth(e.target.value);
 					}}
 				/>
-				<button className="CmpMesesControlMove" onClick={maisMes}>
+				<button
+					className="CmpMesesControlMove"
+					onClick={maisMes}
+					disabled={
+						mes.toISOString().slice(0, 7) ===
+						new Date().toISOString().slice(0, 7)
+					}
+				>
 					Próximo
 				</button>
 			</div>
+			<h1 title={`Registros: ${corpo.length}`}>
+				Total: R$
+				{total.toLocaleString(undefined, {
+					minimumFractionDigits: 2,
+				})}
+			</h1>
 
 			{corpo.length > 0 ? (
-				<CmpTabela cabeca={cabeca} corpo={corpo} />
+				<CmpTabela
+					tableId={`CmpMesesTabelaMonth${props.tipo}`}
+					cabeca={cabeca}
+					corpo={corpo}
+				/>
 			) : (
 				<h1>Não existem transações referentes à esse mês</h1>
 			)}

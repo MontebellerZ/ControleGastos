@@ -99,7 +99,7 @@ app.put("/usuario/update/:id", (req, res) => {
 
 //ok
 app.get("/transacao/get/:usuario", (req, res) => {
-	const sqlSelect = "SELECT * FROM Transacoes WHERE usuario_id=? ORDER BY dia;";
+	const sqlSelect = "SELECT * FROM Transacoes WHERE usuario_id=? ORDER BY dia DESC;";
 
 	db.query(sqlSelect, req.params.usuario, (err, result) => {
 		if (!err) {

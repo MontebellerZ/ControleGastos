@@ -71,13 +71,22 @@ function TelaInicial() {
 			<h1 id="TelaInicialMes">{mes[0].toUpperCase() + mes.slice(1)}</h1>
 			<div id="TelaInicialInfo">
 				<div className="TelaInicialInfoQuadrado">
-					Seus recebimentos esse mês: R${recebimentos.toLocaleString(undefined, {minimumFractionDigits: 2})}
+					Seus recebimentos esse mês: R$
+					{recebimentos.toLocaleString(undefined, {
+						minimumFractionDigits: 2,
+					})}
 				</div>
 				<div className="TelaInicialInfoQuadrado">
-					Seus gastos esse mês: R${gastos.toLocaleString(undefined, {minimumFractionDigits: 2})}
+					Seus gastos esse mês: R$
+					{gastos.toLocaleString(undefined, {
+						minimumFractionDigits: 2,
+					})}
 				</div>
 				<div className="TelaInicialInfoQuadrado">
-					Saldo do mês: R${saldo.toLocaleString(undefined, {minimumFractionDigits: 2})}
+					Saldo do mês: R$
+					{saldo.toLocaleString(undefined, {
+						minimumFractionDigits: 2,
+					})}
 				</div>
 			</div>
 		</section>
