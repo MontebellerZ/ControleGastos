@@ -2,29 +2,16 @@
 CREATE DATABASE IF NOT EXISTS ControleGastos;
 USE ControleGastos;
 
-CREATE TABLE IF NOT EXISTS PendingUsuarios(
-	id INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(80) NOT NULL,
-    senha VARCHAR(20) NOT NULL,
-    nome VARCHAR(40) NOT NULL,
-    sobrenome VARCHAR(40) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS Usuarios (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(80) UNIQUE,
     senha VARCHAR(20) NOT NULL,
     nome VARCHAR(40) NOT NULL,
-    sobrenome VARCHAR(40) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS Preferencias(
-	usuario_id INT PRIMARY KEY,
-    categorias BLOB,
-    tipos BLOB,
-    moeda VARCHAR(10),
-    tema ENUM("Claro", "Escuro"),
-    FOREIGN KEY (usuario_id) REFERENCES Usuarios(id)
+    sobrenome VARCHAR(40) NOT NULL,
+    verificado BOOLEAN DEFAULT FALSE,
+    trans_categorias BLOB,
+    trans_tipos BLOB,
+    pref_tema ENUM("Claro", "Escuro")
 );
 
 CREATE TABLE IF NOT EXISTS Transacoes (

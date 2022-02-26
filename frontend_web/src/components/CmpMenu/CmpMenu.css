@@ -1,0 +1,71 @@
+#CmpMenu{
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    /* border-right: 1px solid black; */
+}
+
+#CmpMenuBackground{
+    position: absolute;
+    /* background-size: contain; */
+    background-size: cover;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+#CmpMenuCabecalho{
+    position: relative;
+}
+
+#CmpMenuCabecalho img{
+    height: 100px;
+    margin: 10px;
+}
+
+#CmpMenuCorpo{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: lightgray;
+    padding-bottom: 50px;
+    padding-top: 10px;
+}
+
+.CmpMenuBtn, .CmpMenuBtnAtivo{
+    width: 100%;
+    box-sizing: border-box;
+    transition: 0.05s;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin: 0px;
+    padding: 5px 0px 5px 16px;
+    min-width: 180px;
+    text-decoration: none;
+    color: black;
+}
+
+.CmpMenuBtnAtivo{
+    background-color: gray;
+    color: rgb(255, 234, 118);
+}
+
+.CmpMenuBtn:hover{
+    background-color: rgb(177, 177, 177);
+    /* color: white; */
+}
+
+#CmpMenuFirst{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+#CmpMenuLast{
+    display: flex;
+    flex-direction: column;
+}
