@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//ok
+//ok teste
 app.get("/usuario/login/:email/:senha", (req, res) => {
     const params = [req.params.email, req.params.senha];
     const sqlSelect = "SELECT * FROM Usuarios WHERE (email=? AND senha=?);";
