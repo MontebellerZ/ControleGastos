@@ -9,9 +9,7 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     nome VARCHAR(40) NOT NULL,
     sobrenome VARCHAR(40) NOT NULL,
     verificado BOOLEAN DEFAULT FALSE,
-    trans_categorias BLOB,
-    trans_tipos BLOB,
-    pref_tema ENUM("Claro", "Escuro")
+    pref_tema ENUM("Claro", "Escuro") DEFAULT "Claro"
 );
 
 CREATE TABLE IF NOT EXISTS Transacoes (
@@ -20,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Transacoes (
     dia DATE NOT NULL,
     categoria VARCHAR(30) NOT NULL,
     motivo VARCHAR(120) NOT NULL,
-    tipo VARCHAR(30) NOT NULL,
+    tipo ENUM("Entrada", "Credito", "Debito") NOT NULL DEFAULT "Entrada",
     valor DECIMAL(12,2) NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuarios(id)
 );
@@ -33,16 +31,20 @@ SELECT * FROM Transacoes;
 
 DESCRIBE Transacoes;
 
-ALTER TABLE Transacoes MODIFY tipo VARCHAR(30) NOT NULL;
+ALTER TABLE Transacoes MODIFY tipo ENUM("Entrada", "Credito", "Debito") NOT NULL DEFAULT "Entrada";
+ALTER TABLE Usuarios DROP COLUMN trans_tipos;
 
 DELETE FROM Usuarios WHERE id=4;
 DELETE FROM Transacoes WHERE id>0;
 
-DROP TABLE Preferencias;
+DROP TABLE Transacoes;
 
 SELECT @@datadir;
-*/
 
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+FLUSH PRIVILEGES;
+SET SQL_SAFE_UPDATES = 1;
+*/
 
 
 

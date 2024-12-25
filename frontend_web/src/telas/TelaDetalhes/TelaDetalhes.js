@@ -11,7 +11,7 @@ function TelaDetalhes() {
 		useState(0);
 
 	function tryGetTransacoesUsuario() {
-		Axios.get(`http://localhost:3001/transacao/get/${usuario.id}`)
+		Axios.get(`http://${process.env.REACT_APP_IPBACKEND}/transacao/get/${usuario.id}`)
 			.then((result) => {
 				setMeses(result.data);
 			})

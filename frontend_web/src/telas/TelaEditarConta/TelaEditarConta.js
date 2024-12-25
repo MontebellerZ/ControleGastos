@@ -20,7 +20,7 @@ function TelaEditarConta() {
 		};
 
 		Axios.put(
-			`http://localhost:3001/usuario/update/${usuario.id}`,
+			`http://${process.env.REACT_APP_IPBACKEND}/usuario/update/${usuario.id}`,
 			novoUsuario
 		)
 			.then(() => {
